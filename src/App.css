@@ -1,38 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Crete+Round&display=swap');
+
 .App {
+  font-family: 'Crete Round';
+}
+
+.slide-container {
+  background-color: #5CDB95;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.slide-container > .row{
+  overflow-x: auto;
+  flex-wrap: nowrap;
+}
+
+.image-container {
+  position: relative;
+  transition: transform 0.2s;
+}
+
+.image-container:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.image-container:hover .overlay {
+  opacity: 1;
+}
+
+.overlay {
+  position: absolute;
+  background: rgba(0,0,0,0.8);
+  width: 100%;
+  transition: 0.5s ease;
+  opacity: 0;
+  bottom: 0;
+  font-size: 20px;
+  padding: 20px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.table-container {
+  padding-left: 40px;
+  padding-right: 40px;
+  background-color: #5CDB95;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  color: white;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.navCustom {
+  background-color: #5CDB95;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.carousel {
+  margin-top: 
 }
