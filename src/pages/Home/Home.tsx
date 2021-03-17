@@ -1,8 +1,8 @@
-import '../App.css'
-import Slides from './Home/movieSlides'
-import Tables from './Home/tables'
+import Slides from './MovieSlides'
+import Tables from './Tables'
 
 const home = () => {
+
     return (
         <>
             <Slides />

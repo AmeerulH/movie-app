@@ -1,8 +1,8 @@
-import React from 'react'
-import { Table } from 'react-bootstrap'
 import { Movies } from '../../components/Movies'
 import '../../App.css'
-import { movie } from '../../components/movie'
+import { DataGrid } from '@material-ui/data-grid';
+import { useHistory } from 'react-router-dom'
+import 'aos/dist/aos.css';
 
 interface movie { // id, original_title, overview, popularity, poster_path, vote_average
     id: number;
@@ -16,30 +16,36 @@ interface movie { // id, original_title, overview, popularity, poster_path, vote
 
 const Tables = () => {
     const movies: movie[] = Movies()
-    console.log(movies)
+    const history = useHistory()
+
+    const test = (m: any) => {
+        history.push(`/details/${m.id}`, m)
+    }
+
+    const columns = [
+        { field: 'title', headerName: 'Movie Title', flex: 0.5 },
+        { field: 'popularity', headerName: 'Popularity', flex: 0.5 },
+        { field: 'vote_average', headerName: 'Voting Average', flex: 0.5 },
+        { field: 'release_date', headerName: 'Release Date', flex: 0.5  }
+    ];
 
     return (
-        <div className="table-container">
-            <Table striped bordered hover variant="dark" responsive>
-                <thead>
-                    <tr>
-                        <th data-sortable="true">Title</th>
-                        <th>Popularity</th>
-                        <th>Voting Average</th>
-                        <th>Release Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {movies.map((item, index) => (
-                        <tr key={index}>
-                            <td>{item.title}</td>
-                            <td>{item.popularity}</td>
-                            <td>{item.vote_average}</td>
-                            <td>{item.release_date}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
+        <div className="default">
+            <div data-aos="fade-right" className='header'>
+                <h1>List of available movies:</h1>
+            </div>
+            <div data-aos="zoom-out">
+                <div style={{ width: '100%', paddingLeft: '40px', paddingRight: '40px', paddingBottom: '40px' }} >
+                    <div style={{ display: 'flex', height: '100%' }}>
+                        <DataGrid autoHeight className="table" rowHeight={45}
+                            rows={movies} columns={columns} pageSize={10} 
+                            onRowSelected={(newSelection) => {
+                                test(newSelection.data)
+                            }}
+                        />
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
